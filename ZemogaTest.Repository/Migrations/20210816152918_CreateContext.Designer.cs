@@ -10,7 +10,7 @@ using ZemogaTest.Repository.DatabaseContext;
 namespace ZemogaTest.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210816151217_CreateContext")]
+    [Migration("20210816152918_CreateContext")]
     partial class CreateContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -71,6 +71,9 @@ namespace ZemogaTest.Repository.Migrations
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
+
+                    b.Property<string>("StatusMessage")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");

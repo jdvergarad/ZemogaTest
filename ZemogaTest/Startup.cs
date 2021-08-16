@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ZemogaTest.Repository.DatabaseContext;
+using ZemogaTest.Services.Services;
 
 namespace ZemogaTest
 {
@@ -32,6 +33,8 @@ namespace ZemogaTest
 
             services.AddDbContext<ApplicationDbContext>(item =>
                                                         item.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
+            
+            services.AddTransient<IPostService, PostService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

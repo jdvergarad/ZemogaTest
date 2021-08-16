@@ -32,6 +32,7 @@ namespace ZemogaTest.Repository.Migrations
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PublishedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
+                    StatusMessage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AuthorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>

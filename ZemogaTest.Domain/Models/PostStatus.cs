@@ -4,6 +4,7 @@
     {
         InProgress = 1,
         PendingApproval = 2,
-        Published = 3,
+        Rejected = 3,
+        Published = 4,
     }
 }
