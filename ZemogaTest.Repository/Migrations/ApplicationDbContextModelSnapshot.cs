@@ -28,6 +28,9 @@ namespace ZemogaTest.Repository.Migrations
                     b.Property<Guid?>("AuthorId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("AuthorUserName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
 
@@ -54,6 +57,9 @@ namespace ZemogaTest.Repository.Migrations
 
                     b.Property<Guid?>("AuthorId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AuthorUserName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ZemogaTest.Domain.Models;
@@ -35,6 +36,7 @@ namespace ZemogaTest.Services.Services
             var domainPost = _mapper.Map<Post>(createPostRequest);
             domainPost.Id = Guid.NewGuid();
             domainPost.Author = userInDb;
+            domainPost.AuthorUserName = userInDb.UserName;
             domainPost.CreatedDate = DateTime.Now;
             domainPost.ModifiedDate = DateTime.Now;
             domainPost.Status = PostStatus.InProgress;
@@ -47,8 +49,11 @@ namespace ZemogaTest.Services.Services
 
         public async Task<ApiResponse> GetAllPosts()
         {
-            ApiResponse response = new ApiResponse();
+            GetAllPostsResponse response = new GetAllPostsResponse { Posts = new List<PostDto>()};
             var result = await _repositoryPost.GetAll();
+
+            response.Posts = _mapper.Map<List<PostDto>>(result);
+
             return response;
         }
 

@@ -13,6 +13,7 @@ namespace ZemogaTest.Domain.Models
         public PostStatus Status { get; set; }
         public string StatusMessage { get; set; }
         public User Author { get; set; }
+        public string AuthorUserName { get; set; }
         public List<Comment> Comments { get; set; }
     }
 }

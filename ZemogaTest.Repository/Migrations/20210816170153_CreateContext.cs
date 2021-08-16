@@ -33,7 +33,8 @@ namespace ZemogaTest.Repository.Migrations
                     PublishedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
                     StatusMessage = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AuthorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    AuthorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    AuthorUserName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -52,6 +53,7 @@ namespace ZemogaTest.Repository.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AuthorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    AuthorUserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PostId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)

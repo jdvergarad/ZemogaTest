@@ -10,7 +10,7 @@ using ZemogaTest.Repository.DatabaseContext;
 namespace ZemogaTest.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210816152918_CreateContext")]
+    [Migration("20210816170153_CreateContext")]
     partial class CreateContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,6 +29,9 @@ namespace ZemogaTest.Repository.Migrations
 
                     b.Property<Guid?>("AuthorId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AuthorUserName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
@@ -56,6 +59,9 @@ namespace ZemogaTest.Repository.Migrations
 
                     b.Property<Guid?>("AuthorId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AuthorUserName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
