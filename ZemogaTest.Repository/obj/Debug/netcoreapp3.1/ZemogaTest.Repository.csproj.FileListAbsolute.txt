@@ -10,3 +10,6 @@ C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Repository\obj\Debug
 C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Repository\obj\Debug\netcoreapp3.1\ZemogaTest.Repository.dll
 C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Repository\obj\Debug\netcoreapp3.1\ZemogaTest.Repository.pdb
 C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Repository\obj\Debug\netcoreapp3.1\ZemogaTest.Repository.genruntimeconfig.cache
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Repository\bin\Debug\netcoreapp3.1\ZemogaTest.Domain.dll
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Repository\bin\Debug\netcoreapp3.1\ZemogaTest.Domain.pdb
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Repository\obj\Debug\netcoreapp3.1\ZemogaTest.Repository.csproj.CopyComplete

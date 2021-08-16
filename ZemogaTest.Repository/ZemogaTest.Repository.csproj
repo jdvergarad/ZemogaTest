@@ -17,4 +17,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ZemogaTest.Domain\ZemogaTest.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

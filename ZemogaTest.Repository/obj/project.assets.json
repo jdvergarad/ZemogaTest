@@ -1520,6 +1520,19 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "ZemogaTest.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "5.0.9"
+        },
+        "compile": {
+          "bin/placeholder/ZemogaTest.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ZemogaTest.Domain.dll": {}
+        }
       }
     }
   },
@@ -5788,6 +5801,11 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
+    },
+    "ZemogaTest.Domain/1.0.0": {
+      "type": "project",
+      "path": "../ZemogaTest.Domain/ZemogaTest.Domain.csproj",
+      "msbuildProject": "../ZemogaTest.Domain/ZemogaTest.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -5795,7 +5813,8 @@
       "Microsoft.EntityFrameworkCore >= 5.0.9",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.9",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.9",
-      "Microsoft.EntityFrameworkCore.Tools >= 5.0.9"
+      "Microsoft.EntityFrameworkCore.Tools >= 5.0.9",
+      "ZemogaTest.Domain >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -5824,7 +5843,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Camila\\Documents\\Juan\\Zemoga\\ZemogaTest\\ZemogaTest.Domain\\ZemogaTest.Domain.csproj": {
+              "projectPath": "C:\\Users\\Camila\\Documents\\Juan\\Zemoga\\ZemogaTest\\ZemogaTest.Domain\\ZemogaTest.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
