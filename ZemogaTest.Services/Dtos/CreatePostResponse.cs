@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ZemogaTest.Services.Dtos
 {
@@ -11,5 +12,6 @@ namespace ZemogaTest.Services.Dtos
         public string Title { get; set; }
         public string Content { get; set; }
         public string StatusMessage { get; set; }
+        public List<CommentDto> Comments { get; set; }
     }
 }

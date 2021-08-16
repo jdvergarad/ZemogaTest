@@ -27,6 +27,14 @@ namespace ZemogaTest.Services.Mappers
                 .ForMember(dest => dest.Title, opt => opt.MapFrom(y => y.Title))
                 .ForMember(dest => dest.AuthorUsername, opt => opt.MapFrom(y => y.AuthorUserName))
                 .ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(y => y.CreatedDate));
+
+            CreateMap<AddCommentRequest, Comment>()
+                .ForMember(dest => dest.Content, opt => opt.MapFrom(y => y.Content));
+
+            CreateMap<Comment, CommentDto>()
+                .ForMember(dest => dest.AuthorUsername, opt => opt.MapFrom(y => y.AuthorUserName))
+                .ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(y => y.CreatedDate))
+                .ForMember(dest => dest.Content, opt => opt.MapFrom(y => y.Content));
         }
     }
 }

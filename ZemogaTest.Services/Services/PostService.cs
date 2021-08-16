@@ -57,6 +57,12 @@ namespace ZemogaTest.Services.Services
 
             response.Posts = _mapper.Map<List<PostDto>>(result.Where(p => p.Status == postStatus));
 
+            foreach (var post in response.Posts)
+            {
+                var commentsInDb = _repositoryComment.GetAll().Result.Where(c => c.PostId == post.PostId);
+                post.Comments.AddRange(_mapper.Map<List<CommentDto>>(commentsInDb));
+            }
+
             return response;
         }
 
@@ -67,11 +73,44 @@ namespace ZemogaTest.Services.Services
             return response;
         }
 
-        public async Task<ApiResponse> AddComment(AddCommentRequest createPostRequest)
+        public async Task<ApiResponse> AddComment(AddCommentRequest addCommentRequest)
         {
-            ApiResponse response = new ApiResponse();
-            await _repositoryComment.Create(new Comment());
-            return response;
+            var postInDb = _repositoryPost.Get(addCommentRequest.PostId).Result;
+
+            if (postInDb == null)
+            {
+                return new ErrorResponse { Mensaje = $"Post does not exist." };
+            }
+
+            if (postInDb.Status != PostStatus.Published)
+            {
+                return new ErrorResponse { Mensaje = $"Post is not publised." };
+            }
+
+            var userInDb = _repositoryUser.GetAll().Result.FirstOrDefault(user => user.UserName == addCommentRequest.AuthorUserName);
+
+            if (userInDb == null)
+            {
+                return new ErrorResponse { Mensaje = $"User: '{addCommentRequest.AuthorUserName}' does not exist." };
+            }
+
+            var domainComment = _mapper.Map<Comment>(addCommentRequest);
+            domainComment.Id = Guid.NewGuid();
+            domainComment.Author = userInDb;
+            domainComment.AuthorUserName = userInDb.UserName;
+            domainComment.CreatedDate = DateTime.Now;
+            domainComment.PostId = postInDb.Id;
+
+            await _repositoryComment.Create(domainComment);
+
+            var commentsForPost = _repositoryComment.GetAll().Result.Where(c => c.PostId == postInDb.Id);
+            
+            postInDb.Comments = new List<Comment>();
+            postInDb.Comments.AddRange(commentsForPost);
+
+            await _repositoryPost.Edit(postInDb);
+
+            return _mapper.Map<CreatePostResponse>(postInDb);
         }
 
         public async Task<ApiResponse> SendForApproval(SendPostForApprovalRequest sendForApprovalRequest)

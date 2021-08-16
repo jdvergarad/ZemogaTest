@@ -119,9 +119,15 @@ namespace ZemogaTest.Api.Controllers
 
         [HttpPost]
         [Route("AddComment")]
-        public async Task<ActionResult<ApiResponse>> AddComment([FromBody] string value)
+        public async Task<ActionResult<ApiResponse>> AddComment([FromBody] AddCommentRequest addCommentRequest)
         {
-            return Ok();
+            var result = await _postService.AddComment(addCommentRequest);
+            if (result is ErrorResponse)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result);
         }
 
         // PUT api/<PostController>/

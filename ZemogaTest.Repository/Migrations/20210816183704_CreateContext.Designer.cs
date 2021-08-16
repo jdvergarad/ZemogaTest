@@ -10,7 +10,7 @@ using ZemogaTest.Repository.DatabaseContext;
 namespace ZemogaTest.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210816170153_CreateContext")]
+    [Migration("20210816183704_CreateContext")]
     partial class CreateContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,7 +39,7 @@ namespace ZemogaTest.Repository.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("PostId")
+                    b.Property<Guid>("PostId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -119,7 +119,9 @@ namespace ZemogaTest.Repository.Migrations
 
                     b.HasOne("ZemogaTest.Domain.Models.Post", null)
                         .WithMany("Comments")
-                        .HasForeignKey("PostId");
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Author");
                 });

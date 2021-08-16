@@ -8,5 +8,6 @@ namespace ZemogaTest.Domain.Models
         public string AuthorUserName { get; set; }
         public string Content { get; set; }
         public DateTime CreatedDate { get; set; }
+        public Guid PostId { get; set; }
     }
 }
