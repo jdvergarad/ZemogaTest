@@ -29,6 +29,17 @@ namespace ZemogaTest.Repository.Repository
             await _applicationDbContext.SaveChangesAsync();
         }
 
+        public async Task Edit(T entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+
+            entities.Update(entity);
+            await _applicationDbContext.SaveChangesAsync();
+        }
+
         public async Task<T> Get(Guid id)
         {
             return await entities.SingleOrDefaultAsync(c => c.Id == id);

@@ -37,7 +37,6 @@ namespace ZemogaTest
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IPostService, PostService>();
-            services.AddTransient<ICommentService, CommentService>();
             services.AddTransient<IUserService, UserService>();
 
             services.AddAutoMapper(typeof(Services.Mappers.UserMapperProfile));

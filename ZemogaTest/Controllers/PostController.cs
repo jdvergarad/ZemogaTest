@@ -23,9 +23,10 @@ namespace ZemogaTest.Api.Controllers
 
         // GET: api/<PostController>
         [HttpGet]
-        public async Task<ActionResult<ApiResponse>> Get()
+        [Route("GetAllPublisedPost")]
+        public async Task<ActionResult<ApiResponse>> GetAllPublisedPost()
         {
-            var result = await _postService.GetAllPosts();
+            var result = await _postService.GetAllPublisedPosts();
             if (result is ErrorResponse)
             {
                 return BadRequest(result);
@@ -34,11 +35,12 @@ namespace ZemogaTest.Api.Controllers
             return Ok(result);
         }
 
-        // GET api/<PostController>/5
-        [HttpGet("{postId}")]
-        public async Task<ActionResult<ApiResponse>> Get(Guid postId)
+        // GET: api/<PostController>
+        [HttpGet]
+        [Route("GetAllPendigForApprovalPost")]
+        public async Task<ActionResult<ApiResponse>> GetAllPendigForApprovalPost()
         {
-            var result = await _postService.GetPost(postId);
+            var result = await _postService.GetAllPendingForApprovalPost();
             if (result is ErrorResponse)
             {
                 return BadRequest(result);
@@ -46,6 +48,32 @@ namespace ZemogaTest.Api.Controllers
 
             return Ok(result);
         }
+
+        // GET: api/<PostController>/userName
+        [HttpGet("{writerUserName}")]
+        public async Task<ActionResult<ApiResponse>> GetAllPostByWriter(string writerUserName)
+        {
+            var result = await _postService.GetAllPostByWriter(writerUserName);
+            if (result is ErrorResponse)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result);
+        }
+
+        //// GET api/<PostController>/5
+        //[HttpGet("{postId}")]
+        //public async Task<ActionResult<ApiResponse>> Get(Guid postId)
+        //{
+        //    var result = await _postService.GetPost(postId);
+        //    if (result is ErrorResponse)
+        //    {
+        //        return BadRequest(result);
+        //    }
+
+        //    return Ok(result);
+        //}
 
         // POST api/<PostController>
         [HttpPost]
@@ -61,11 +89,53 @@ namespace ZemogaTest.Api.Controllers
             return Ok(result);
         }
 
-        // PUT api/<PostController>/5
-        [HttpPut("{id}")]
-        public async Task<ActionResult<ApiResponse>> Put(int id, [FromBody] string value)
+        // POST api/<PostController>
+        [HttpPost]
+        [Route("SendPostForApproval")]
+        public async Task<ActionResult<ApiResponse>> SendPostForApproval([FromBody] SendPostForApprovalRequest sendForApprovalRequest)
+        {
+            var result = await _postService.SendForApproval(sendForApprovalRequest);
+            if (result is ErrorResponse)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result);
+        }
+
+        // POST api/<PostController>
+        [HttpPost]
+        [Route("ApproveOrReject")]
+        public async Task<ActionResult<ApiResponse>> ApproveOrRejectPost([FromBody] ApproveOrRejectPost approveOrRejectPostRequest)
+        {
+            var result = await _postService.ApproveOrReject(approveOrRejectPostRequest);
+            if (result is ErrorResponse)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("AddComment")]
+        public async Task<ActionResult<ApiResponse>> AddComment([FromBody] string value)
         {
             return Ok();
+        }
+
+        // PUT api/<PostController>/
+        [HttpPut]
+        [Route("EditPost")]
+        public async Task<ActionResult<ApiResponse>> EditPost([FromBody] EditPostequest editPostequest)
+        {
+            var result = await _postService.EditPost(editPostequest);
+            if (result is ErrorResponse)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result);
         }
     }
 }

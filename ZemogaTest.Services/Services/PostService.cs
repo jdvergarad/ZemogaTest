@@ -13,12 +13,15 @@ namespace ZemogaTest.Services.Services
     {
         private IRepository<Post> _repositoryPost;
         private IRepository<User> _repositoryUser;
+        private IRepository<Comment> _repositoryComment;
         private IMapper _mapper;
 
-        public PostService(IRepository<Post> repositoryPost, IRepository<User> repositoryUser, IMapper mapper)
+        public PostService(IRepository<Post> repositoryPost, IRepository<User> repositoryUser,
+                           IRepository<Comment> repositoryComment, IMapper mapper)
         {
             _repositoryPost = repositoryPost;
             _repositoryUser = repositoryUser;
+            _repositoryComment = repositoryComment;
             _mapper = mapper;
         }
 
@@ -47,12 +50,12 @@ namespace ZemogaTest.Services.Services
             return _mapper.Map<CreatePostResponse>(domainPost);
         }
 
-        public async Task<ApiResponse> GetAllPosts()
+        public async Task<ApiResponse> GetAllPost(PostStatus postStatus)
         {
             GetAllPostsResponse response = new GetAllPostsResponse { Posts = new List<PostDto>()};
             var result = await _repositoryPost.GetAll();
 
-            response.Posts = _mapper.Map<List<PostDto>>(result);
+            response.Posts = _mapper.Map<List<PostDto>>(result.Where(p => p.Status == postStatus));
 
             return response;
         }
@@ -62,6 +65,121 @@ namespace ZemogaTest.Services.Services
             ApiResponse response = new ApiResponse();
             var result = await _repositoryPost.Get(postId);
             return response;
+        }
+
+        public async Task<ApiResponse> AddComment(AddCommentRequest createPostRequest)
+        {
+            ApiResponse response = new ApiResponse();
+            await _repositoryComment.Create(new Comment());
+            return response;
+        }
+
+        public async Task<ApiResponse> SendForApproval(SendPostForApprovalRequest sendForApprovalRequest)
+        {
+            var postInDb = _repositoryPost.Get(sendForApprovalRequest.PostId).Result;
+
+            if (postInDb == null)
+            {
+                return new ErrorResponse { Mensaje = $"Post does not exist."};
+            }
+
+            if (postInDb.Status == PostStatus.Published)
+            {
+                return new ErrorResponse { Mensaje = $"Post is already publised." };
+            }
+
+            postInDb.Status = PostStatus.PendingApproval;
+            postInDb.StatusMessage = PostStatus.PendingApproval.ToString();
+            postInDb.ModifiedDate = DateTime.Now;
+
+            await _repositoryPost.Edit(postInDb);
+
+            return _mapper.Map<CreatePostResponse>(postInDb);
+        }
+
+        public async Task<ApiResponse> GetAllPostByWriter(string writerUserName)
+        {
+            GetAllPostsResponse response = new GetAllPostsResponse();
+
+            var userInDb = _repositoryUser.GetAll().Result.FirstOrDefault(user => user.UserName == writerUserName);
+
+            if (userInDb == null)
+            {
+                return new ErrorResponse { Mensaje = $"User: '{writerUserName}' does not exist." };
+            }
+
+            var result = _repositoryPost.GetAll().Result.Where(p => p.AuthorUserName == writerUserName).ToList();
+
+            response.Posts = _mapper.Map<List<PostDto>>(result);
+
+            return response;
+        }
+
+        public Task<ApiResponse> GetAllPublisedPosts()
+        {
+            return GetAllPost(PostStatus.Published);
+        }
+
+        public Task<ApiResponse> GetAllPendingForApprovalPost()
+        {
+            return GetAllPost(PostStatus.PendingApproval);
+        }
+
+        public async Task<ApiResponse> EditPost(EditPostequest editPostequest)
+        {
+            var postInDb = _repositoryPost.Get(editPostequest.PostId).Result;
+
+            if (postInDb == null)
+            {
+                return new ErrorResponse { Mensaje = $"Post does not exist." };
+            }
+
+            if (postInDb.Status == PostStatus.Published)
+            {
+                return new ErrorResponse { Mensaje = $"Post is already publised." };
+            }
+
+            postInDb.Status = PostStatus.InProgress;
+            postInDb.StatusMessage = PostStatus.InProgress.ToString();
+            postInDb.Title = editPostequest.NewTitle;
+            postInDb.Content = editPostequest.NewContent;
+            postInDb.ModifiedDate = DateTime.Now;
+
+            await _repositoryPost.Edit(postInDb);
+
+            return _mapper.Map<CreatePostResponse>(postInDb);
+        }
+
+        public async Task<ApiResponse> ApproveOrReject(ApproveOrRejectPost approveOrRejectPost)
+        {
+            var postInDb = _repositoryPost.Get(approveOrRejectPost.PostId).Result;
+
+            if (postInDb == null)
+            {
+                return new ErrorResponse { Mensaje = $"Post does not exist." };
+            }
+
+            if (postInDb.Status != PostStatus.PendingApproval)
+            {
+                return new ErrorResponse { Mensaje = $"Post is not ready for approval" };
+            }
+
+            if(approveOrRejectPost.Decision == 0)
+            {
+                postInDb.PublishedDate = DateTime.Now;
+                postInDb.Status = PostStatus.Published;
+            }
+            else
+            {
+                postInDb.Status = PostStatus.Rejected;
+            }
+
+            postInDb.StatusMessage = approveOrRejectPost.Message;
+            postInDb.ModifiedDate = DateTime.Now;
+
+            await _repositoryPost.Edit(postInDb);
+
+            return _mapper.Map<CreatePostResponse>(postInDb);
         }
     }
 }

@@ -13,13 +13,16 @@ namespace ZemogaTest.Services.Mappers
                 .ForMember(dest => dest.Title, opt => opt.MapFrom(y => y.Title));
 
             CreateMap<Post, CreatePostResponse>()
+                .ForMember(dest => dest.PostId, opt => opt.MapFrom(y => y.Id))
                 .ForMember(dest => dest.Content, opt => opt.MapFrom(y => y.Content))
                 .ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(y => y.CreatedDate))
+                .ForMember(dest => dest.ModifiedDate, opt => opt.MapFrom(y => y.ModifiedDate))
                 .ForMember(dest => dest.StatusMessage, opt => opt.MapFrom(y => y.StatusMessage))
-                .ForMember(dest => dest.AuthorUserName, opt => opt.MapFrom(y => y.Author.UserName))
+                .ForMember(dest => dest.AuthorUserName, opt => opt.MapFrom(y => y.AuthorUserName))
                 .ForMember(dest => dest.Title, opt => opt.MapFrom(y => y.Title));
 
             CreateMap<Post, PostDto>()
+                .ForMember(dest => dest.PostId, opt => opt.MapFrom(y => y.Id))
                 .ForMember(dest => dest.Content, opt => opt.MapFrom(y => y.Content))
                 .ForMember(dest => dest.Title, opt => opt.MapFrom(y => y.Title))
                 .ForMember(dest => dest.AuthorUsername, opt => opt.MapFrom(y => y.AuthorUserName))
