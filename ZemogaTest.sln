@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZemogaTest.Api", "ZemogaTest\ZemogaTest.Api.csproj", "{CFE23A5C-52D5-46DB-9CF9-9A1AD3DF3EF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZemogaTest.Domain", "ZemogaTest.Domain\ZemogaTest.Domain.csproj", "{39DEF7C6-C8D4-49BB-8AC6-54078A8D1D7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZemogaTest.Services", "ZemogaTest.Services\ZemogaTest.Services.csproj", "{D5EDC3DB-64C2-4352-8E54-77DB547395AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZemogaTest.Repository", "ZemogaTest.Repository\ZemogaTest.Repository.csproj", "{BED054C6-BE94-477F-89F2-D3508DBEE576}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CFE23A5C-52D5-46DB-9CF9-9A1AD3DF3EF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFE23A5C-52D5-46DB-9CF9-9A1AD3DF3EF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFE23A5C-52D5-46DB-9CF9-9A1AD3DF3EF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFE23A5C-52D5-46DB-9CF9-9A1AD3DF3EF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39DEF7C6-C8D4-49BB-8AC6-54078A8D1D7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39DEF7C6-C8D4-49BB-8AC6-54078A8D1D7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39DEF7C6-C8D4-49BB-8AC6-54078A8D1D7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39DEF7C6-C8D4-49BB-8AC6-54078A8D1D7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5EDC3DB-64C2-4352-8E54-77DB547395AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5EDC3DB-64C2-4352-8E54-77DB547395AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5EDC3DB-64C2-4352-8E54-77DB547395AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5EDC3DB-64C2-4352-8E54-77DB547395AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BED054C6-BE94-477F-89F2-D3508DBEE576}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BED054C6-BE94-477F-89F2-D3508DBEE576}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BED054C6-BE94-477F-89F2-D3508DBEE576}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BED054C6-BE94-477F-89F2-D3508DBEE576}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {95C6A633-3C36-4751-90C7-3A29B87D9E89}
+	EndGlobalSection
+EndGlobal
