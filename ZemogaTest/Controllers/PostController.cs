@@ -25,7 +25,12 @@ namespace ZemogaTest.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<ApiResponse>> Get()
         {
-            var result = _postService.GetAllPosts();
+            var result = await _postService.GetAllPosts();
+            if (result is ErrorResponse)
+            {
+                return BadRequest(result);
+            }
+
             return Ok(result);
         }
 
@@ -33,7 +38,12 @@ namespace ZemogaTest.Api.Controllers
         [HttpGet("{postId}")]
         public async Task<ActionResult<ApiResponse>> Get(Guid postId)
         {
-            var result = _postService.GetPost(postId);
+            var result = await _postService.GetPost(postId);
+            if (result is ErrorResponse)
+            {
+                return BadRequest(result);
+            }
+
             return Ok(result);
         }
 
@@ -42,7 +52,12 @@ namespace ZemogaTest.Api.Controllers
         [Route("CreatePost")]
         public async Task<ActionResult<ApiResponse>> CreatePost([FromBody] CreatePostRequest request)
         {
-            var result = _postService.CreatePost(request);
+            var result = await _postService.CreatePost(request);
+            if (result is ErrorResponse)
+            {
+                return BadRequest(result);
+            }
+
             return Ok(result);
         }
 

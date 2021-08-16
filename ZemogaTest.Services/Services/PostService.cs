@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using ZemogaTest.Domain.Models;
 using ZemogaTest.Repository.Repository;
@@ -8,31 +10,52 @@ namespace ZemogaTest.Services.Services
 {
     public class PostService : IPostService
     {
-        private IRepository<Post> _repository;
+        private IRepository<Post> _repositoryPost;
+        private IRepository<User> _repositoryUser;
+        private IMapper _mapper;
 
-        public PostService(IRepository<Post> repository)
+        public PostService(IRepository<Post> repositoryPost, IRepository<User> repositoryUser, IMapper mapper)
         {
-            _repository = repository;
+            _repositoryPost = repositoryPost;
+            _repositoryUser = repositoryUser;
+            _mapper = mapper;
         }
 
         public async Task<ApiResponse> CreatePost(CreatePostRequest createPostRequest)
         {
             ApiResponse response = new ApiResponse();
-            await _repository.Create(new Post());
-            return response;
+
+            var userInDb = _repositoryUser.GetAll().Result.FirstOrDefault(user => user.UserName == createPostRequest.AuthorUsername);
+
+            if (userInDb == null)
+            {
+                return new ErrorResponse { Mensaje = $"User: '{createPostRequest.AuthorUsername}' does not exist." };
+            }
+
+            var domainPost = _mapper.Map<Post>(createPostRequest);
+            domainPost.Id = Guid.NewGuid();
+            domainPost.Author = userInDb;
+            domainPost.CreatedDate = DateTime.Now;
+            domainPost.ModifiedDate = DateTime.Now;
+            domainPost.Status = PostStatus.InProgress;
+            domainPost.StatusMessage = PostStatus.InProgress.ToString();
+
+            await _repositoryPost.Create(domainPost);
+
+            return _mapper.Map<CreatePostResponse>(domainPost);
         }
 
         public async Task<ApiResponse> GetAllPosts()
         {
             ApiResponse response = new ApiResponse();
-            var result = await _repository.GetAll();
+            var result = await _repositoryPost.GetAll();
             return response;
         }
 
         public async Task<ApiResponse> GetPost(Guid postId)
         {
             ApiResponse response = new ApiResponse();
-            var result = await _repository.Get(postId);
+            var result = await _repositoryPost.Get(postId);
             return response;
         }
     }
