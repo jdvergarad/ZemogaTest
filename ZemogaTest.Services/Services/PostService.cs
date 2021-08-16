@@ -9,6 +9,12 @@ namespace ZemogaTest.Services.Services
     public class PostService : IPostService
     {
         private IRepository<Post> _repository;
+
+        public PostService(IRepository<Post> repository)
+        {
+            _repository = repository;
+        }
+
         public async Task<ApiResponse> CreatePost(CreatePostRequest createPostRequest)
         {
             ApiResponse response = new ApiResponse();

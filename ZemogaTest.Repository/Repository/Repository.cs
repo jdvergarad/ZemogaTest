@@ -20,7 +20,13 @@ namespace ZemogaTest.Repository.Repository
 
         public async Task Create(T entity)
         {
-            throw new NotImplementedException();
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+
+            entities.Add(entity);
+            await _applicationDbContext.SaveChangesAsync();
         }
 
         public async Task<T> Get(Guid id)
