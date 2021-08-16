@@ -6,5 +6,6 @@ namespace ZemogaTest.Services.Services
     public interface IUserService
     {
         Task<ApiResponse> CreateUser(AddNewUserRequest request);
+        ApiResponse Login(LoginRequest request);
     }
 }

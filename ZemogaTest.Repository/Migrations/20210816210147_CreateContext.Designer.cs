@@ -10,7 +10,7 @@ using ZemogaTest.Repository.DatabaseContext;
 namespace ZemogaTest.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210816183704_CreateContext")]
+    [Migration("20210816210147_CreateContext")]
     partial class CreateContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -100,8 +100,8 @@ namespace ZemogaTest.Repository.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");

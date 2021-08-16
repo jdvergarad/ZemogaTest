@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace ZemogaTest.Api.Controllers
         }
 
         // GET: api/<PostController>
+        [Authorize]
         [HttpGet]
         [Route("GetAllPublisedPost")]
         public async Task<ActionResult<ApiResponse>> GetAllPublisedPost()
@@ -36,6 +38,7 @@ namespace ZemogaTest.Api.Controllers
         }
 
         // GET: api/<PostController>
+        [Authorize]
         [HttpGet]
         [Route("GetAllPendigForApprovalPost")]
         public async Task<ActionResult<ApiResponse>> GetAllPendigForApprovalPost()
@@ -62,20 +65,8 @@ namespace ZemogaTest.Api.Controllers
             return Ok(result);
         }
 
-        //// GET api/<PostController>/5
-        //[HttpGet("{postId}")]
-        //public async Task<ActionResult<ApiResponse>> Get(Guid postId)
-        //{
-        //    var result = await _postService.GetPost(postId);
-        //    if (result is ErrorResponse)
-        //    {
-        //        return BadRequest(result);
-        //    }
-
-        //    return Ok(result);
-        //}
-
         // POST api/<PostController>
+        [Authorize]
         [HttpPost]
         [Route("CreatePost")]
         public async Task<ActionResult<ApiResponse>> CreatePost([FromBody] CreatePostRequest request)
@@ -90,6 +81,7 @@ namespace ZemogaTest.Api.Controllers
         }
 
         // POST api/<PostController>
+        [Authorize]
         [HttpPost]
         [Route("SendPostForApproval")]
         public async Task<ActionResult<ApiResponse>> SendPostForApproval([FromBody] SendPostForApprovalRequest sendForApprovalRequest)
@@ -104,6 +96,7 @@ namespace ZemogaTest.Api.Controllers
         }
 
         // POST api/<PostController>
+        [Authorize]
         [HttpPost]
         [Route("ApproveOrReject")]
         public async Task<ActionResult<ApiResponse>> ApproveOrRejectPost([FromBody] ApproveOrRejectPost approveOrRejectPostRequest)
@@ -117,6 +110,7 @@ namespace ZemogaTest.Api.Controllers
             return Ok(result);
         }
 
+        [Authorize]
         [HttpPost]
         [Route("AddComment")]
         public async Task<ActionResult<ApiResponse>> AddComment([FromBody] AddCommentRequest addCommentRequest)
@@ -131,6 +125,7 @@ namespace ZemogaTest.Api.Controllers
         }
 
         // PUT api/<PostController>/
+        [Authorize]
         [HttpPut]
         [Route("EditPost")]
         public async Task<ActionResult<ApiResponse>> EditPost([FromBody] EditPostequest editPostequest)

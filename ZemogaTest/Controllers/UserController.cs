@@ -21,6 +21,20 @@ namespace ZemogaTest.Api.Controllers
             _userService = userService;
         }
 
+        [HttpPost]
+        [Route("Login")]
+        public async Task<ActionResult<ApiResponse>> Login([FromBody] LoginRequest loginRequest)
+        {
+            var result = _userService.Login(loginRequest);
+
+            if (result is ErrorResponse)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result);
+        }
+
         // POST api/<UserController>
         [HttpPost]
         [Route("CreateUser")]
