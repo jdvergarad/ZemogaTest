@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Camila\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Camila\\.nuget\\packages"
+    ]
+  }
+}

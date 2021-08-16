@@ -1,0 +1,9 @@
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Services\bin\Debug\netcoreapp3.1\ZemogaTest.Services.deps.json
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Services\bin\Debug\netcoreapp3.1\ZemogaTest.Services.dll
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Services\bin\Debug\netcoreapp3.1\ZemogaTest.Services.pdb
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Services\obj\Debug\netcoreapp3.1\ZemogaTest.Services.csproj.AssemblyReference.cache
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Services\obj\Debug\netcoreapp3.1\ZemogaTest.Services.AssemblyInfoInputs.cache
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Services\obj\Debug\netcoreapp3.1\ZemogaTest.Services.AssemblyInfo.cs
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Services\obj\Debug\netcoreapp3.1\ZemogaTest.Services.csproj.CoreCompileInputs.cache
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Services\obj\Debug\netcoreapp3.1\ZemogaTest.Services.dll
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Services\obj\Debug\netcoreapp3.1\ZemogaTest.Services.pdb

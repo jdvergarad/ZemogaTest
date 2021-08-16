@@ -1,8 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "54dH3LqFhBDSHPLHMAeNbw5nfUaBsjryzz2drEKkMTWYBV+Dit5HLaGzx20LOOkTgsef2tOEYIKTGLIEwrDwNw==",
+  "dgSpecHash": "rxDg9oWrEvl9pmykpnH0E2/W4vb4kqOLhg4WVJWT1K897JB4UXT2ny2vJvix6gJqqcqPbCWM4FhqHLBoTo3Yww==",
   "success": true,
   "projectFilePath": "C:\\Users\\Camila\\Documents\\Juan\\Zemoga\\ZemogaTest\\ZemogaTest.Services\\ZemogaTest.Services.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Camila\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\Camila\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
+    "C:\\Users\\Camila\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\Camila\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.0.0\\microsoft.extensions.dependencyinjection.abstractions.3.0.0.nupkg.sha512",
+    "C:\\Users\\Camila\\.nuget\\packages\\microsoft.extensions.options\\3.0.0\\microsoft.extensions.options.3.0.0.nupkg.sha512",
+    "C:\\Users\\Camila\\.nuget\\packages\\microsoft.extensions.primitives\\3.0.0\\microsoft.extensions.primitives.3.0.0.nupkg.sha512",
+    "C:\\Users\\Camila\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512"
+  ],
   "logs": []
 }

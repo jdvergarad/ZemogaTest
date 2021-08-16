@@ -1,0 +1,12 @@
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Repository\bin\Debug\netcoreapp3.1\ZemogaTest.Repository.deps.json
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Repository\bin\Debug\netcoreapp3.1\ZemogaTest.Repository.runtimeconfig.json
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Repository\bin\Debug\netcoreapp3.1\ZemogaTest.Repository.runtimeconfig.dev.json
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Repository\bin\Debug\netcoreapp3.1\ZemogaTest.Repository.dll
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Repository\bin\Debug\netcoreapp3.1\ZemogaTest.Repository.pdb
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Repository\obj\Debug\netcoreapp3.1\ZemogaTest.Repository.csproj.AssemblyReference.cache
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Repository\obj\Debug\netcoreapp3.1\ZemogaTest.Repository.AssemblyInfoInputs.cache
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Repository\obj\Debug\netcoreapp3.1\ZemogaTest.Repository.AssemblyInfo.cs
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Repository\obj\Debug\netcoreapp3.1\ZemogaTest.Repository.csproj.CoreCompileInputs.cache
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Repository\obj\Debug\netcoreapp3.1\ZemogaTest.Repository.dll
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Repository\obj\Debug\netcoreapp3.1\ZemogaTest.Repository.pdb
+C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Repository\obj\Debug\netcoreapp3.1\ZemogaTest.Repository.genruntimeconfig.cache
