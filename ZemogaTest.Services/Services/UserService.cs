@@ -47,7 +47,7 @@ namespace ZemogaTest.Services.Services
 
             if (user == null)
             {
-                return new ErrorResponse { Mensaje = $"User: '{request.Username}' does not exist in Database" };
+                return new ErrorResponse { Mensaje = $"Please check the credentials." };
             }
 
             var token = GenerateJSONToken(user);

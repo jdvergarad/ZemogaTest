@@ -1,12 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using ZemogaTest.Services.Dtos;
 using ZemogaTest.Services.Services;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ZemogaTest.Api.Controllers
 {
@@ -23,7 +19,7 @@ namespace ZemogaTest.Api.Controllers
 
         [HttpPost]
         [Route("Login")]
-        public async Task<ActionResult<ApiResponse>> Login([FromBody] LoginRequest loginRequest)
+        public ActionResult<ApiResponse> Login([FromBody] LoginRequest loginRequest)
         {
             var result = _userService.Login(loginRequest);
 
