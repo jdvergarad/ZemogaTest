@@ -38,7 +38,7 @@ namespace ZemogaTest.Api.Controllers
         }
 
         // GET: api/<PostController>
-        [Authorize]
+        [Authorize(Roles = "Editor")]
         [HttpGet]
         [Route("GetAllPendigForApprovalPost")]
         public async Task<ActionResult<ApiResponse>> GetAllPendigForApprovalPost()
@@ -53,6 +53,7 @@ namespace ZemogaTest.Api.Controllers
         }
 
         // GET: api/<PostController>/userName
+        [Authorize(Roles = "Writer")]
         [HttpGet("{writerUserName}")]
         public async Task<ActionResult<ApiResponse>> GetAllPostByWriter(string writerUserName)
         {
@@ -66,7 +67,7 @@ namespace ZemogaTest.Api.Controllers
         }
 
         // POST api/<PostController>
-        [Authorize]
+        [Authorize(Roles = "Writer")]
         [HttpPost]
         [Route("CreatePost")]
         public async Task<ActionResult<ApiResponse>> CreatePost([FromBody] CreatePostRequest request)
@@ -81,7 +82,7 @@ namespace ZemogaTest.Api.Controllers
         }
 
         // POST api/<PostController>
-        [Authorize]
+        [Authorize(Roles = "Writer")]
         [HttpPost]
         [Route("SendPostForApproval")]
         public async Task<ActionResult<ApiResponse>> SendPostForApproval([FromBody] SendPostForApprovalRequest sendForApprovalRequest)
@@ -96,7 +97,7 @@ namespace ZemogaTest.Api.Controllers
         }
 
         // POST api/<PostController>
-        [Authorize]
+        [Authorize(Roles = "Editor")]
         [HttpPost]
         [Route("ApproveOrReject")]
         public async Task<ActionResult<ApiResponse>> ApproveOrRejectPost([FromBody] ApproveOrRejectPost approveOrRejectPostRequest)
