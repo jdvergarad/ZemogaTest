@@ -46,14 +46,6 @@ namespace ZemogaTest.Api.Controllers
             return Ok(result);
         }
 
-        // POST api/<PostController>
-        [HttpPost]
-        [Route("AddComment")]
-        public async Task<ActionResult<ApiResponse>> AddComment([FromBody] string value)
-        {
-            return Ok();
-        }
-
         // PUT api/<PostController>/5
         [HttpPut("{id}")]
         public async Task<ActionResult<ApiResponse>> Put(int id, [FromBody] string value)

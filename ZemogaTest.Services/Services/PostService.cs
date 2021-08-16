@@ -1,26 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using ZemogaTest.Domain.Models;
+using ZemogaTest.Repository.Repository;
 using ZemogaTest.Services.Dtos;
 
 namespace ZemogaTest.Services.Services
 {
     public class PostService : IPostService
     {
-        public Task<ApiResponse> CreatePost(CreatePostRequest createPostRequest)
+        private IRepository<Post> _repository;
+        public async Task<ApiResponse> CreatePost(CreatePostRequest createPostRequest)
         {
-            throw new NotImplementedException();
+            ApiResponse response = new ApiResponse();
+            await _repository.Create(new Post());
+            return response;
         }
 
-        public Task<ApiResponse> GetAllPosts()
+        public async Task<ApiResponse> GetAllPosts()
         {
-            throw new NotImplementedException();
+            ApiResponse response = new ApiResponse();
+            var result = await _repository.GetAll();
+            return response;
         }
 
-        public Task<ApiResponse> GetPost(Guid postId)
+        public async Task<ApiResponse> GetPost(Guid postId)
         {
-            throw new NotImplementedException();
+            ApiResponse response = new ApiResponse();
+            var result = await _repository.Get(postId);
+            return response;
         }
     }
 }
