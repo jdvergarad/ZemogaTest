@@ -8,7 +8,7 @@
                 [(ngModel)]="post.title"
                 name="title"
                 placeholder="title"
-                [disabled] = "!isSameUser"
+                [disabled] = "!isSameUser || isPublished || isPendingApproval"
             />
         </div>
         <div class="container" style="background-color:white">
@@ -17,9 +17,9 @@
                 [(ngModel)]="post.content"
                 name="content"
                 placeholder="content"
-                [disabled] = "!isSameUser"
+                [disabled] = "!isSameUser || isPublished || isPendingApproval"
             />
-            <button type="submit" (click)="Update()" *ngIf = isSameUser>Update</button>
+            <button type="submit" (click)="Update()" *ngIf = "isSameUser && !isPublished && !isPendingApproval">Update</button>
             <button type="submit" (click)="SendApproval()" *ngIf = "isSameUser && !isPublished && !isPendingApproval">Send for approval</button>
         </div>
         <div *ngIf = "role == 'Editor' && post.status != 'Published'">
@@ -46,7 +46,7 @@
     </div>
     <hr>
 
-    <div class="container" style="background-color:white">
+    <div class="container" style="background-color:white" *ngIf = "isPublished">
         Add new comment
         <div>
             <input
