@@ -11,6 +11,7 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuardGuard } from './guard/auth-guard.guard';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AuthGuardGuard } from './guard/auth-guard.guard';
     CounterComponent,
     FetchDataComponent,
     LoginComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -30,6 +32,7 @@ import { AuthGuardGuard } from './guard/auth-guard.guard';
       { path: 'counter', component: CounterComponent, canActivate: [AuthGuardGuard] },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuardGuard] },
       { path: 'login', component: LoginComponent },
+      { path: 'post/:id', component: PostComponent, canActivate: [AuthGuardGuard] },
     ])
   ],
   providers: [],

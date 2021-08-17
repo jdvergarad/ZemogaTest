@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { PostServiceService } from '../Services/post-service.service';
 import { postsList } from '../models/postsList';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,8 @@ export class HomeComponent implements OnInit {
   public logedUsername : string;
   public posts: Observable<postsList>;
   public postToShow: postsList;
-  constructor(protected _postService: PostServiceService) {
+
+  constructor(protected _postService: PostServiceService, private router: Router) {
     this.logedUsername = JSON.parse(localStorage.getItem('user')).username
   }
 
@@ -25,6 +27,6 @@ export class HomeComponent implements OnInit {
   }
 
   Open(postId : string){
-    
+    this.router.navigate(['./post/' + postId]);
   }
 }

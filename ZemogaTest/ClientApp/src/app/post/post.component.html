@@ -1,0 +1,42 @@
+<app-nav-menu></app-nav-menu>
+<div>
+    <div class="container">
+        <input
+            type="text"
+            [(ngModel)]="post.title"
+            name="title"
+            placeholder="title"
+            disabled = "true"
+        />
+    </div>
+    <div class="container" style="background-color:white">
+        <input
+            type="text"
+            [(ngModel)]="post.content"
+            name="content"
+            placeholder="content"
+        />
+    </div>
+    <hr>
+    <div class="container" style="background-color:white">
+        Comments
+        <div *ngFor="let comment of post.comments">
+            <h4>Comment Author: {{comment.authorUsername}}</h4>
+            <h5>Comment: {{comment.content}}</h5>
+            <h6>Comment date: {{comment.createdDate}}</h6>
+            <hr>
+        </div>
+    </div>
+    <hr>
+
+    <div class="container" style="background-color:white">
+        Add new comment
+        <div>
+            <input
+                type="text"
+                [(ngModel)]="comment.content"
+            />
+        </div>
+        <button type="submit" (click)="AddComment()">Add comment</button>
+    </div>
+</div>
