@@ -1,21 +1,38 @@
 <app-nav-menu></app-nav-menu>
 <div>
-    <div class="container">
-        <input
-            type="text"
-            [(ngModel)]="post.title"
-            name="title"
-            placeholder="title"
-            disabled = "true"
-        />
-    </div>
-    <div class="container" style="background-color:white">
-        <input
-            type="text"
-            [(ngModel)]="post.content"
-            name="content"
-            placeholder="content"
-        />
+    <div>
+        <h3>Author: {{post.authorUsername}}</h3>
+        <div class="container">
+            <input
+                type="text"
+                [(ngModel)]="post.title"
+                name="title"
+                placeholder="title"
+                [disabled] = "!canEdit"
+            />
+        </div>
+        <div class="container" style="background-color:white">
+            <input
+                type="text"
+                [(ngModel)]="post.content"
+                name="content"
+                placeholder="content"
+                [disabled] = "!canEdit"
+            />
+            <button type="submit" (click)="Update()" *ngIf = canEdit>Update</button>
+        </div>
+        <div *ngIf = "role == 'Editor'">
+            <hr>
+            <button type="submit" (click)="Publish()">Publish</button>
+            <button type="submit" (click)="Reject()">Reject</button>
+            <input
+                type="text"
+                [(ngModel)]="decisionMessage"
+                name="message"
+                placeholder="message"
+                [disabled] = "disablePost"
+            />
+        </div>
     </div>
     <hr>
     <div class="container" style="background-color:white">
