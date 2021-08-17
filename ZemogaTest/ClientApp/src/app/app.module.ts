@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from './login/login.component';
+import { AuthGuardGuard } from './guard/auth-guard.guard';
 
 @NgModule({
   declarations: [
@@ -18,16 +19,16 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuardGuard] },
+      { path: 'counter', component: CounterComponent, canActivate: [AuthGuardGuard] },
+      { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuardGuard] },
       { path: 'login', component: LoginComponent },
     ])
   ],

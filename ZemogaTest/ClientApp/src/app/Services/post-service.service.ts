@@ -4,13 +4,6 @@ import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
 import { postsList } from '../models/postsList';
 
-var httpOption = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('user')).token
-  })
-};
-
 @Injectable({
   providedIn: 'root'
 })
@@ -20,6 +13,13 @@ export class PostServiceService {
   }
 
   public GetAllPublishedPosts(): Observable<postsList> {
+    var httpOption = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('user')).token
+      })
+    };
+
     return this.http.get<postsList>(this.baseUrl + 'api/Post/GetAllPublisedPost', httpOption)
     .pipe( catchError(
       (error: any) => {

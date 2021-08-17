@@ -16,9 +16,10 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.GetPublishedPost();
+    if (JSON.parse(localStorage.getItem('user')) != null) {
+      this.GetPublishedPost();
+    }
   }
-
   async GetPublishedPost(){
     this.postToShow = await this._postService.GetAllPublishedPosts().toPromise();
   }
