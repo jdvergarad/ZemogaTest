@@ -29,11 +29,11 @@ namespace ZemogaTest.Services.Services
             var domainUser = _mapper.Map<User>(request);
             domainUser.Id = Guid.NewGuid();
 
-            var userInDb = _repository.GetAll().Result.FirstOrDefault(user => user.UserName == request.UserName);
+            var userInDb = _repository.GetAll().Result.FirstOrDefault(user => user.Username == request.Username);
 
             if (userInDb != null)
             {
-                return new ErrorResponse { Mensaje = $"User: '{request.UserName}' already exists in Database" };
+                return new ErrorResponse { Message = $"User: '{request.Username}' already exists in Database" };
             }
 
             await _repository.Create(domainUser);
@@ -47,12 +47,13 @@ namespace ZemogaTest.Services.Services
 
             if (user == null)
             {
-                return new ErrorResponse { Mensaje = $"Please check the credentials." };
+                return new ErrorResponse { Message = $"Please check the credentials." };
             }
 
             var token = GenerateJSONToken(user);
 
             response.Token = token;
+            response.Role = user.Role;
 
             return response;
         }
@@ -60,7 +61,7 @@ namespace ZemogaTest.Services.Services
 
         private User AuthenticateUser(string username, string password)
         {
-            return _repository.GetAll().Result.FirstOrDefault(user => user.UserName == username
+            return _repository.GetAll().Result.FirstOrDefault(user => user.Username == username
                                                                     && user.Password == password);
         }
         private string GenerateJSONToken(User user)
@@ -70,7 +71,7 @@ namespace ZemogaTest.Services.Services
 
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                new Claim(JwtRegisteredClaimNames.Sub, user.Username),
                 new Claim(JwtRegisteredClaimNames.Jti, user.Id.ToString()),
                 new Claim(ClaimTypes.Role, user.Role),
             };

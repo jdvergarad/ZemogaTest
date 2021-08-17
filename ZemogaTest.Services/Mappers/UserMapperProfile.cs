@@ -11,10 +11,10 @@ namespace ZemogaTest.Services.Mappers
             CreateMap<AddNewUserRequest, User>()
                 .ForMember(dest => dest.Password, opt => opt.MapFrom(y => y.Password))
                 .ForMember(dest => dest.Role, opt => opt.MapFrom(y => y.Role))
-                .ForMember(dest => dest.UserName, opt => opt.MapFrom(y => y.UserName));
+                .ForMember(dest => dest.Username, opt => opt.MapFrom(y => y.Username));
 
             CreateMap<User, AddNewUserResponse>()
-                .ForMember(dest => dest.UserName, opt => opt.MapFrom(y => y.UserName));
+                .ForMember(dest => dest.Username, opt => opt.MapFrom(y => y.Username));
         }
     }
 }

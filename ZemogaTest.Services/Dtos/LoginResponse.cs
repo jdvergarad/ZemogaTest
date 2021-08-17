@@ -3,5 +3,6 @@
     public class LoginResponse : ApiResponse
     {
         public string Token { get; set; }
+        public string Role { get; set; }
     }
 }

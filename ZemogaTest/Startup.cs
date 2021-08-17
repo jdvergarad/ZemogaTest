@@ -61,7 +61,7 @@ namespace ZemogaTest
             services.AddSwaggerGen();
 
             services.AddDbContext<ApplicationDbContext>(item =>
-                                                        item.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
+                                                        item.UseInMemoryDatabase("ZemogaTestDb"));
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IPostService, PostService>();

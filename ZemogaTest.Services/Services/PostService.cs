@@ -29,17 +29,17 @@ namespace ZemogaTest.Services.Services
         {
             ApiResponse response = new ApiResponse();
 
-            var userInDb = _repositoryUser.GetAll().Result.FirstOrDefault(user => user.UserName == createPostRequest.AuthorUsername);
+            var userInDb = _repositoryUser.GetAll().Result.FirstOrDefault(user => user.Username == createPostRequest.AuthorUsername);
 
             if (userInDb == null)
             {
-                return new ErrorResponse { Mensaje = $"User: '{createPostRequest.AuthorUsername}' does not exist." };
+                return new ErrorResponse { Message = $"User: '{createPostRequest.AuthorUsername}' does not exist." };
             }
 
             var domainPost = _mapper.Map<Post>(createPostRequest);
             domainPost.Id = Guid.NewGuid();
             domainPost.Author = userInDb;
-            domainPost.AuthorUserName = userInDb.UserName;
+            domainPost.AuthorUserName = userInDb.Username;
             domainPost.CreatedDate = DateTime.Now;
             domainPost.ModifiedDate = DateTime.Now;
             domainPost.Status = PostStatus.InProgress;
@@ -79,25 +79,25 @@ namespace ZemogaTest.Services.Services
 
             if (postInDb == null)
             {
-                return new ErrorResponse { Mensaje = $"Post does not exist." };
+                return new ErrorResponse { Message = $"Post does not exist." };
             }
 
             if (postInDb.Status != PostStatus.Published)
             {
-                return new ErrorResponse { Mensaje = $"Post is not publised." };
+                return new ErrorResponse { Message = $"Post is not publised." };
             }
 
-            var userInDb = _repositoryUser.GetAll().Result.FirstOrDefault(user => user.UserName == addCommentRequest.AuthorUserName);
+            var userInDb = _repositoryUser.GetAll().Result.FirstOrDefault(user => user.Username == addCommentRequest.AuthorUsername);
 
             if (userInDb == null)
             {
-                return new ErrorResponse { Mensaje = $"User: '{addCommentRequest.AuthorUserName}' does not exist." };
+                return new ErrorResponse { Message = $"User: '{addCommentRequest.AuthorUsername}' does not exist." };
             }
 
             var domainComment = _mapper.Map<Comment>(addCommentRequest);
             domainComment.Id = Guid.NewGuid();
             domainComment.Author = userInDb;
-            domainComment.AuthorUserName = userInDb.UserName;
+            domainComment.AuthorUserName = userInDb.Username;
             domainComment.CreatedDate = DateTime.Now;
             domainComment.PostId = postInDb.Id;
 
@@ -119,12 +119,12 @@ namespace ZemogaTest.Services.Services
 
             if (postInDb == null)
             {
-                return new ErrorResponse { Mensaje = $"Post does not exist."};
+                return new ErrorResponse { Message = $"Post does not exist."};
             }
 
             if (postInDb.Status == PostStatus.Published)
             {
-                return new ErrorResponse { Mensaje = $"Post is already publised." };
+                return new ErrorResponse { Message = $"Post is already publised." };
             }
 
             postInDb.Status = PostStatus.PendingApproval;
@@ -140,11 +140,11 @@ namespace ZemogaTest.Services.Services
         {
             GetAllPostsResponse response = new GetAllPostsResponse();
 
-            var userInDb = _repositoryUser.GetAll().Result.FirstOrDefault(user => user.UserName == writerUserName);
+            var userInDb = _repositoryUser.GetAll().Result.FirstOrDefault(user => user.Username == writerUserName);
 
             if (userInDb == null)
             {
-                return new ErrorResponse { Mensaje = $"User: '{writerUserName}' does not exist." };
+                return new ErrorResponse { Message = $"User: '{writerUserName}' does not exist." };
             }
 
             var result = _repositoryPost.GetAll().Result.Where(p => p.AuthorUserName == writerUserName).ToList();
@@ -170,12 +170,12 @@ namespace ZemogaTest.Services.Services
 
             if (postInDb == null)
             {
-                return new ErrorResponse { Mensaje = $"Post does not exist." };
+                return new ErrorResponse { Message = $"Post does not exist." };
             }
 
             if (postInDb.Status == PostStatus.Published)
             {
-                return new ErrorResponse { Mensaje = $"Post is already publised." };
+                return new ErrorResponse { Message = $"Post is already publised." };
             }
 
             postInDb.Status = PostStatus.InProgress;
@@ -195,12 +195,12 @@ namespace ZemogaTest.Services.Services
 
             if (postInDb == null)
             {
-                return new ErrorResponse { Mensaje = $"Post does not exist." };
+                return new ErrorResponse { Message = $"Post does not exist." };
             }
 
             if (postInDb.Status != PostStatus.PendingApproval)
             {
-                return new ErrorResponse { Mensaje = $"Post is not ready for approval" };
+                return new ErrorResponse { Message = $"Post is not ready for approval" };
             }
 
             if(approveOrRejectPost.Decision == 0)

@@ -1,9 +1,0 @@
-C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Domain\bin\Debug\netcoreapp3.1\ZemogaTest.Domain.deps.json
-C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Domain\bin\Debug\netcoreapp3.1\ZemogaTest.Domain.dll
-C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Domain\bin\Debug\netcoreapp3.1\ZemogaTest.Domain.pdb
-C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Domain\obj\Debug\netcoreapp3.1\ZemogaTest.Domain.csproj.AssemblyReference.cache
-C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Domain\obj\Debug\netcoreapp3.1\ZemogaTest.Domain.AssemblyInfoInputs.cache
-C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Domain\obj\Debug\netcoreapp3.1\ZemogaTest.Domain.AssemblyInfo.cs
-C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Domain\obj\Debug\netcoreapp3.1\ZemogaTest.Domain.csproj.CoreCompileInputs.cache
-C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Domain\obj\Debug\netcoreapp3.1\ZemogaTest.Domain.dll
-C:\Users\Camila\Documents\Juan\Zemoga\ZemogaTest\ZemogaTest.Domain\obj\Debug\netcoreapp3.1\ZemogaTest.Domain.pdb
