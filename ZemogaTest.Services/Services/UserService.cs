@@ -54,6 +54,7 @@ namespace ZemogaTest.Services.Services
 
             response.Token = token;
             response.Role = user.Role;
+            response.Username = user.Username;
 
             return response;
         }
