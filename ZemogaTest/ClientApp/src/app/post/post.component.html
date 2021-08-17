@@ -21,14 +21,25 @@
             />
             <button type="submit" (click)="Update()" *ngIf = "isSameUser && !isPublished && !isPendingApproval">Update</button>
             <button type="submit" (click)="SendApproval()" *ngIf = "isSameUser && !isPublished && !isPendingApproval">Send for approval</button>
+            <div *ngIf = "isRejected">
+                Decision: 
+                <input
+                type="text"
+                [(ngModel)]="post.statusMessage"
+                name="content"
+                placeholder="content"
+                [disabled] = "true"
+            />
+            </div>
+            
         </div>
         <div *ngIf = "role == 'Editor' && post.status != 'Published'">
             <hr>
-            <button type="submit" (click)="Publish()">Publish</button>
-            <button type="submit" (click)="Reject()">Reject</button>
+            <button type="submit" (click)="Decision(0)">Publish</button>
+            <button type="submit" (click)="Decision(1)">Reject</button>
             <input
                 type="text"
-                [(ngModel)]="decisionMessage"
+                [(ngModel)]="decisionModel.message"
                 name="message"
                 placeholder="message"
             />

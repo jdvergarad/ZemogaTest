@@ -191,8 +191,8 @@ namespace ZemogaTest.Services.Services
 
             postInDb.Status = PostStatus.InProgress;
             postInDb.StatusMessage = PostStatus.InProgress.ToString();
-            postInDb.Title = editPostequest.NewTitle;
-            postInDb.Content = editPostequest.NewContent;
+            postInDb.Title = editPostequest.Title;
+            postInDb.Content = editPostequest.Content;
             postInDb.ModifiedDate = DateTime.Now;
 
             await _repositoryPost.Edit(postInDb);

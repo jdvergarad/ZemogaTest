@@ -3,6 +3,7 @@ import { post } from '../models/post';
 import { PostServiceService } from '../Services/post-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { comment } from '../models/comment';
+import { approveReject } from '../models/approveReject';
 
 @Component({
   selector: 'app-post',
@@ -19,7 +20,9 @@ export class PostComponent implements OnInit {
   public isSameUser = false;
   public isPublished = true;
   public isPendingApproval = true;
+  public isRejected = true;
   public comment = new comment();
+  public decisionModel = new approveReject();
 
   constructor(protected _postService: PostServiceService,
       private activatedRoute: ActivatedRoute, private router: Router) {
@@ -35,7 +38,9 @@ export class PostComponent implements OnInit {
     this.postStatus = this.post.status;
     this.isPublished = this.post.status == "Published";
     this.isPendingApproval = this.post.status == "PendingApproval";
+    this.isRejected = this.post.status == "Rejected";
     this.isSameUser = this.post.authorUsername.toString() == this.username.toString();
+    this.decisionModel.postId = this.post.postId;
   }
 
   async AddComment(){
@@ -48,5 +53,16 @@ export class PostComponent implements OnInit {
   async SendApproval(){
     await this._postService.SendForApproval(this.post).toPromise();
     this.router.navigate(['./myposts/']);
+  }
+
+  async Decision(decision: number){
+    this.decisionModel.decision = decision;
+    await this._postService.ApproveOrRejectPost(this.decisionModel).toPromise();
+    this.router.navigate(['./pending-approval/']);
+  }
+
+  async Update(){
+    await this._postService.EditPost(this.post).toPromise();
+    window.location.reload();
   }
 }

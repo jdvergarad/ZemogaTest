@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { postsList } from '../models/postsList';
 import { post } from '../models/post';
 import { comment } from '../models/comment';
+import { approveReject } from '../models/approveReject';
 
 @Injectable({
   providedIn: 'root'
@@ -129,6 +130,42 @@ export class PostServiceService {
     };
 
     return this.http.post<post>(this.baseUrl + 'api/Post/CreatePost', post, httpOption)
+    .pipe( catchError(
+      (error: any) => {
+        this.errorMessage = 'Creating post error';
+        alert(this.errorMessage);
+        return Observable.throw(this.errorMessage);
+      }));
+  }
+
+  public EditPost(post: post): Observable<post> {
+    
+    var httpOption = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('user')).token
+      })
+    };
+
+    return this.http.put<post>(this.baseUrl + 'api/Post/EditPost', post, httpOption)
+    .pipe( catchError(
+      (error: any) => {
+        this.errorMessage = 'Creating post error';
+        alert(this.errorMessage);
+        return Observable.throw(this.errorMessage);
+      }));
+  }
+
+  public ApproveOrRejectPost(decision: approveReject): Observable<post> {
+    
+    var httpOption = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('user')).token
+      })
+    };
+
+    return this.http.post<post>(this.baseUrl + 'api/Post/ApproveOrReject', decision, httpOption)
     .pipe( catchError(
       (error: any) => {
         this.errorMessage = 'Creating post error';
