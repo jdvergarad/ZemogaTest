@@ -25,6 +25,6 @@ export class HomeComponent implements OnInit {
   }
 
   Open(postId : string){
-    alert(postId);
+    
   }
 }
