@@ -31,6 +31,23 @@ export class PostServiceService {
       }));
   }
 
+  public GetPostsByWriterId(writerId: string): Observable<postsList> {
+    var httpOption = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('user')).token
+      })
+    };
+
+    return this.http.get<postsList>(this.baseUrl + 'api/Post/GetAllPostByWriter/' + writerId, httpOption)
+    .pipe( catchError(
+      (error: any) => {
+        this.errorMessage = 'Getting posts error';
+        alert(this.errorMessage);
+        return Observable.throw(this.errorMessage);
+      }));
+  }
+
   public GetPostById(postId: string): Observable<post> {
     
     var httpOption = {
@@ -62,6 +79,24 @@ export class PostServiceService {
     .pipe( catchError(
       (error: any) => {
         this.errorMessage = 'Adding comment to post error';
+        alert(this.errorMessage);
+        return Observable.throw(this.errorMessage);
+      }));
+  }
+
+  public CreatePost(post: post): Observable<post> {
+    
+    var httpOption = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('user')).token
+      })
+    };
+
+    return this.http.post<post>(this.baseUrl + 'api/Post/CreatePost', post, httpOption)
+    .pipe( catchError(
+      (error: any) => {
+        this.errorMessage = 'Creating post error';
         alert(this.errorMessage);
         return Observable.throw(this.errorMessage);
       }));

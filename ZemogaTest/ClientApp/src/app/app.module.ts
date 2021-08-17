@@ -12,6 +12,8 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuardGuard } from './guard/auth-guard.guard';
 import { PostComponent } from './post/post.component';
+import { NewpostComponent } from './newpost/newpost.component';
+import { MypostsComponent } from './myposts/myposts.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { PostComponent } from './post/post.component';
     FetchDataComponent,
     LoginComponent,
     PostComponent,
+    NewpostComponent,
+    MypostsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -29,10 +33,10 @@ import { PostComponent } from './post/post.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuardGuard] },
-      { path: 'counter', component: CounterComponent, canActivate: [AuthGuardGuard] },
-      { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuardGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'post/:id', component: PostComponent, canActivate: [AuthGuardGuard] },
+      { path: 'newpost', component: NewpostComponent, canActivate: [AuthGuardGuard] },
+      { path: 'myposts', component: MypostsComponent, canActivate: [AuthGuardGuard] },
     ])
   ],
   providers: [],
