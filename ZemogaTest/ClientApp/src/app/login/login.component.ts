@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   constructor(protected _loginService: LoginServiceService, private router: Router) { }
 
   ngOnInit() {
+    localStorage.removeItem('user');
   }
 
   async Login(){

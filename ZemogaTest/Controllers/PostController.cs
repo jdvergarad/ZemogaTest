@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 using ZemogaTest.Services.Dtos;
 using ZemogaTest.Services.Services;
@@ -49,10 +50,23 @@ namespace ZemogaTest.Api.Controllers
 
         // GET: api/<PostController>/userName
         [Authorize(Roles = "Writer")]
-        [HttpGet("{writerUserName}")]
+        [HttpGet("[action]/{writerUserName}")]
         public async Task<ActionResult<ApiResponse>> GetAllPostByWriter(string writerUserName)
         {
             var result = await _postService.GetAllPostByWriter(writerUserName);
+            if (result is ErrorResponse)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result);
+        }
+
+        // GET: api/<PostController>/userName
+        [HttpGet("[action]/{postId}")]
+        public async Task<ActionResult<ApiResponse>> GetPostById(Guid postId)
+        {
+            var result = await _postService.GetPost(postId);
             if (result is ErrorResponse)
             {
                 return BadRequest(result);

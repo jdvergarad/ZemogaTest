@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ZemogaTest.Services.Dtos
 {
-    public class PostDto
+    public class PostDto : ApiResponse
     {
         public Guid PostId { get; set; }
         public string Title { get; set; }

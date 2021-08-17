@@ -68,8 +68,19 @@ namespace ZemogaTest.Services.Services
 
         public async Task<ApiResponse> GetPost(Guid postId)
         {
-            ApiResponse response = new ApiResponse();
+            PostDto response = new PostDto();
             var result = await _repositoryPost.Get(postId);
+
+            response = _mapper.Map<PostDto>(result);
+
+            if(response == null)
+            {
+                return new ErrorResponse { Message = $"Post not found." };
+            }
+
+            var commentsInDb = _repositoryComment.GetAll().Result.Where(c => c.PostId == postId);
+            response.Comments.AddRange(_mapper.Map<List<CommentDto>>(commentsInDb));
+
             return response;
         }
 
