@@ -14,6 +14,7 @@ import { AuthGuardGuard } from './guard/auth-guard.guard';
 import { PostComponent } from './post/post.component';
 import { NewpostComponent } from './newpost/newpost.component';
 import { MypostsComponent } from './myposts/myposts.component';
+import { PendingApprovalComponent } from './pending-approval/pending-approval.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MypostsComponent } from './myposts/myposts.component';
     PostComponent,
     NewpostComponent,
     MypostsComponent,
+    PendingApprovalComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -37,6 +39,7 @@ import { MypostsComponent } from './myposts/myposts.component';
       { path: 'post/:id', component: PostComponent, canActivate: [AuthGuardGuard] },
       { path: 'newpost', component: NewpostComponent, canActivate: [AuthGuardGuard] },
       { path: 'myposts', component: MypostsComponent, canActivate: [AuthGuardGuard] },
+      { path: 'pending-approval', component: PendingApprovalComponent, canActivate: [AuthGuardGuard] },
     ])
   ],
   providers: [],

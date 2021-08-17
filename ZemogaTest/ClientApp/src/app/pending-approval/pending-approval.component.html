@@ -1,5 +1,5 @@
 <app-nav-menu></app-nav-menu>
-<h1 id="tableLabel">My Posts</h1>
+<h1 id="tableLabel">Posts pending for approval</h1>
 <div class="form-row">
 </div>
 <table class='table table-hover' aria-labelledby="tableLabel"  *ngIf="postToShow">
@@ -7,14 +7,12 @@
     <tr>
         <th scope="col">Writer</th>
         <th scope="col">Title</th>
-        <th scope="col">Status</th>
     </tr>
     </thead>
     <tbody>
         <tr *ngFor="let post of postToShow.posts">
             <td>{{ post.authorUsername }}</td>
             <td>{{ post.title }}</td>
-            <td>{{ post.status }}</td>
             <td><button class="btn btn-primary float-right mb-3" (click)="Open(post.postId)">Open</button></td>
         </tr>
     </tbody>

@@ -8,7 +8,7 @@
                 [(ngModel)]="post.title"
                 name="title"
                 placeholder="title"
-                [disabled] = "!canEdit"
+                [disabled] = "!isSameUser"
             />
         </div>
         <div class="container" style="background-color:white">
@@ -17,11 +17,12 @@
                 [(ngModel)]="post.content"
                 name="content"
                 placeholder="content"
-                [disabled] = "!canEdit"
+                [disabled] = "!isSameUser"
             />
-            <button type="submit" (click)="Update()" *ngIf = canEdit>Update</button>
+            <button type="submit" (click)="Update()" *ngIf = isSameUser>Update</button>
+            <button type="submit" (click)="SendApproval()" *ngIf = "isSameUser && !isPublished && !isPendingApproval">Send for approval</button>
         </div>
-        <div *ngIf = "role == 'Editor'">
+        <div *ngIf = "role == 'Editor' && post.status != 'Published'">
             <hr>
             <button type="submit" (click)="Publish()">Publish</button>
             <button type="submit" (click)="Reject()">Reject</button>
@@ -30,7 +31,6 @@
                 [(ngModel)]="decisionMessage"
                 name="message"
                 placeholder="message"
-                [disabled] = "disablePost"
             />
         </div>
     </div>
