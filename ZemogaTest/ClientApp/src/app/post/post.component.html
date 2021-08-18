@@ -1,72 +1,79 @@
 <app-nav-menu></app-nav-menu>
-<div>
-    <div>
-        <h3>Author: {{post.authorUsername}}</h3>
-        <div class="container">
-            <input
-                type="text"
-                [(ngModel)]="post.title"
-                name="title"
-                placeholder="title"
-                [disabled] = "!isSameUser || isPublished || isPendingApproval"
-            />
-        </div>
-        <div class="container" style="background-color:white">
-            <input
-                type="text"
-                [(ngModel)]="post.content"
-                name="content"
-                placeholder="content"
-                [disabled] = "!isSameUser || isPublished || isPendingApproval"
-            />
-            <button type="submit" (click)="Update()" *ngIf = "isSameUser && !isPublished && !isPendingApproval">Update</button>
-            <button type="submit" (click)="SendApproval()" *ngIf = "isSameUser && !isPublished && !isPendingApproval">Send for approval</button>
-            <div *ngIf = "isRejected">
-                Decision: 
-                <input
-                type="text"
-                [(ngModel)]="post.statusMessage"
-                name="content"
-                placeholder="content"
-                [disabled] = "true"
-            />
-            </div>
-            <div *ngIf = "isPublished">
-                Published: {{post.publishedDate | date:'medium'}}
-            </div>
-        </div>
-        <div *ngIf = "role == 'Editor' && post.status != 'Published'">
-            <hr>
-            <button type="submit" (click)="Decision(0)">Publish</button>
-            <button type="submit" (click)="Decision(1)">Reject</button>
-            <input
-                type="text"
-                [(ngModel)]="decisionModel.message"
-                name="message"
-                placeholder="message"
-            />
-        </div>
-    </div>
-    <hr>
-    <div class="container" style="background-color:white">
-        Comments
-        <div *ngFor="let comment of post.comments">
-            <h4>Comment Author: {{comment.authorUsername}}</h4>
-            <h5>Comment: {{comment.content}}</h5>
-            <h6>Comment date: {{comment.createdDate | date:'medium' }}</h6>
-            <hr>
-        </div>
-    </div>
-    <hr>
 
-    <div class="container" style="background-color:white" *ngIf = "isPublished">
-        Add new comment
-        <div>
+<form>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Author : {{post.authorUsername}}</label>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Title</label>
+        <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="post.title"
+            name="Title"
+            placeholder="Title"
+            [disabled] = "!isSameUser || isPublished || isPendingApproval"
+        />
+    </div>
+    <div class="form-group">
+        <label>Content</label>
+        <textarea 
+            type="text"
+            [(ngModel)]="post.content"
+            name="content"
+            placeholder="Content" 
+            class="form-control" 
+            [disabled] = "!isSameUser || isPublished || isPendingApproval"
+            rows="3">
+        </textarea>
+        <button type="submit" class="btn btn-primary" (click)="Update()" *ngIf = "isSameUser && !isPublished && !isPendingApproval">Update</button>
+        <button type="submit" class="btn btn-warning" (click)="SendApproval()" *ngIf = "isSameUser && !isPublished && !isPendingApproval">Send for approval</button>
+        <div *ngIf = "isRejected">
+            Decision: 
             <input
                 type="text"
-                [(ngModel)]="comment.content"
+                [value] ="post.statusMessage"
+                name="content"
+                class="form-control" 
+                placeholder="content"
+                readonly
             />
         </div>
-        <button type="submit" (click)="AddComment()">Add comment</button>
+    </div>
+</form>
+
+<form>
+    <div class="form-group" *ngIf = "role == 'Editor' && !isPublished">
+        <hr>
+        <textarea 
+            type="text"
+            [(ngModel)]="decisionModel.message"
+            name="decision"
+            placeholder="Decision Message" 
+            class="form-control" 
+            rows="3">
+        </textarea>
+        <hr>
+        <button type="submit" class="btn btn-success" (click)="Decision(0)">Publish</button>
+        <button type="submit" class="btn btn-warning" (click)="Decision(1)">Reject</button>
+    </div>
+</form>
+
+<div class="container mt-5 mb-5" *ngIf = "isPublished">
+    <div class="d-flex justify-content-center row">
+        <div class="d-flex flex-column col-md-8">
+            <div class="coment-bottom bg-white p-2 px-4">
+                <div class="d-flex flex-row add-comment-section mt-4 mb-4">
+                    <input type="text" class="form-control mr-3" placeholder="Add comment" [(ngModel)]="comment.content">
+                        <button class="btn btn-primary" type="button" (click)="AddComment()">Comment</button>
+                </div>
+                <div class="commented-section mt-2" *ngFor="let comment of post.comments">
+                    <div class="d-flex flex-row align-items-center commented-user">
+                        <h5 class="mr-2">{{comment.authorUsername}}</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">{{comment.createdDate | date:'medium' }}</span>
+                    </div>
+                    <div class="comment-text-sm"><span>{{comment.content}}</span></div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

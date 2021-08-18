@@ -44,10 +44,12 @@ export class PostComponent implements OnInit {
   }
 
   async AddComment(){
-    this.comment.postId = this.postId;
-    this.comment.authorUsername = this.username;
-    await this._postService.AddComment(this.comment).toPromise();
-    window.location.reload();
+    if (this.comment.content != undefined && this.comment.content != ''){
+      this.comment.postId = this.postId;
+      this.comment.authorUsername = this.username;
+      await this._postService.AddComment(this.comment).toPromise();
+      window.location.reload();
+    }
   }
 
   async SendApproval(){
