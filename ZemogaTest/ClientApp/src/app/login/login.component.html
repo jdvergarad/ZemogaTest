@@ -1,31 +1,41 @@
-<div class="login">
-    <form class="custom-form" method="post">
-      <h1>Login</h1>
-      <input
-        type="username"
-        [(ngModel)]="loginUser.Username"
-        name="username"
-        placeholder="username"
-        required="required"
-      />
-      <input
-        type="password"
-        [(ngModel)]="loginUser.Password"
-        name="password"
-        placeholder="Password"
-        required="required"
-      />
-      <button type="submit" (click)="Login()">Log in</button>
-    </form>
-  </div>
+  <!-- Default form login -->
+<form class="text-center border border-light p-5" method="post">
 
+  <p class="h4 mb-4">Login</p>
+
+  <!-- Username -->
+  <input
+    class="form-control mb-3"
+    type="username"
+    [(ngModel)]="loginUser.Username"
+    name="username"
+    placeholder="username"
+    required="required"
+  />
+
+  <!-- Password -->
+  <input  
+    class="form-control mb-3" 
+    type="password"
+    [(ngModel)]="loginUser.Password"
+    name="password"
+    placeholder="Password"
+    required="required"
+  />
+
+  <!-- Login button -->
+  <button type="submit" (click)="Login()">Log in</button>
+  <hr>
   <div>
+    <h3>NOTE:</h3>
     There are 4 Users in the database <br>
   
-    1. Username = Public1- Password = Public1 <br>
-    2. Username = Writer1- Password = Writer1 <br>
-    3. Username = Writer2- Password = Writer2 <br>
-    4. Username = Editor1- Password = Editor1 <br>
+    1. Username = Public1-Password = Public1 <br>
+    2. Username = Writer1-Password = Writer1 <br>
+    3. Username = Writer2-Password = Writer2 <br>
+    4. Username = Editor1-Password = Editor1 <br>
   
     Please use one of those credentials
   </div>
+</form>
+<!-- Default form login -->

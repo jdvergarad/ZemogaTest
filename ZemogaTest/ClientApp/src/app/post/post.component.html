@@ -31,7 +31,9 @@
                 [disabled] = "true"
             />
             </div>
-            
+            <div *ngIf = "isPublished">
+                Published: {{post.publishedDate | date:'medium'}}
+            </div>
         </div>
         <div *ngIf = "role == 'Editor' && post.status != 'Published'">
             <hr>
@@ -51,7 +53,7 @@
         <div *ngFor="let comment of post.comments">
             <h4>Comment Author: {{comment.authorUsername}}</h4>
             <h5>Comment: {{comment.content}}</h5>
-            <h6>Comment date: {{comment.createdDate}}</h6>
+            <h6>Comment date: {{comment.createdDate | date:'medium' }}</h6>
             <hr>
         </div>
     </div>

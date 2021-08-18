@@ -16,12 +16,7 @@ export class PostServiceService {
   }
 
   public GetAllPublishedPosts(): Observable<postsList> {
-    var httpOption = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('user')).token
-      })
-    };
+    var httpOption = this.ConfigureHeaders();
 
     return this.http.get<postsList>(this.baseUrl + 'api/Post/GetAllPublisedPost', httpOption)
     .pipe( catchError(
@@ -33,12 +28,7 @@ export class PostServiceService {
   }
 
   public GetAllPendingApproval(): Observable<postsList> {
-    var httpOption = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('user')).token
-      })
-    };
+    var httpOption = this.ConfigureHeaders();
 
     return this.http.get<postsList>(this.baseUrl + 'api/Post/GetAllPendigForApprovalPost', httpOption)
     .pipe( catchError(
@@ -50,12 +40,7 @@ export class PostServiceService {
   }
 
   public GetPostsByWriterId(writerId: string): Observable<postsList> {
-    var httpOption = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('user')).token
-      })
-    };
+    var httpOption = this.ConfigureHeaders();
 
     return this.http.get<postsList>(this.baseUrl + 'api/Post/GetAllPostByWriter/' + writerId, httpOption)
     .pipe( catchError(
@@ -67,13 +52,7 @@ export class PostServiceService {
   }
 
   public GetPostById(postId: string): Observable<post> {
-    
-    var httpOption = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('user')).token
-      })
-    };
+    var httpOption = this.ConfigureHeaders();
 
     return this.http.get<post>(this.baseUrl + 'api/Post/GetPostById/'+ postId, httpOption)
     .pipe( catchError(
@@ -85,13 +64,7 @@ export class PostServiceService {
   }
 
   public AddComment(comment: comment): Observable<post> {
-    
-    var httpOption = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('user')).token
-      })
-    };
+    var httpOption = this.ConfigureHeaders();
 
     return this.http.post<post>(this.baseUrl + 'api/Post/AddComment', comment, httpOption)
     .pipe( catchError(
@@ -103,13 +76,7 @@ export class PostServiceService {
   }
 
   public SendForApproval(post: post): Observable<post> {
-    
-    var httpOption = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('user')).token
-      })
-    };
+    var httpOption = this.ConfigureHeaders();
 
     return this.http.post<post>(this.baseUrl + 'api/Post/SendPostForApproval', post, httpOption)
     .pipe( catchError(
@@ -121,13 +88,7 @@ export class PostServiceService {
   }
 
   public CreatePost(post: post): Observable<post> {
-    
-    var httpOption = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('user')).token
-      })
-    };
+    var httpOption = this.ConfigureHeaders();
 
     return this.http.post<post>(this.baseUrl + 'api/Post/CreatePost', post, httpOption)
     .pipe( catchError(
@@ -139,13 +100,7 @@ export class PostServiceService {
   }
 
   public EditPost(post: post): Observable<post> {
-    
-    var httpOption = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('user')).token
-      })
-    };
+    var httpOption = this.ConfigureHeaders();
 
     return this.http.put<post>(this.baseUrl + 'api/Post/EditPost', post, httpOption)
     .pipe( catchError(
@@ -157,13 +112,7 @@ export class PostServiceService {
   }
 
   public ApproveOrRejectPost(decision: approveReject): Observable<post> {
-    
-    var httpOption = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('user')).token
-      })
-    };
+    var httpOption = this.ConfigureHeaders();
 
     return this.http.post<post>(this.baseUrl + 'api/Post/ApproveOrReject', decision, httpOption)
     .pipe( catchError(
@@ -172,5 +121,16 @@ export class PostServiceService {
         alert(this.errorMessage);
         return Observable.throw(this.errorMessage);
       }));
+  }
+
+  ConfigureHeaders() {
+    var httpOption = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('user')).token
+      })
+    };
+
+    return httpOption;
   }
 }
