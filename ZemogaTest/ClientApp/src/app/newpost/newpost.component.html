@@ -1,5 +1,5 @@
 <app-nav-menu></app-nav-menu>
-<div>
+<!-- <div>
     <div>
         <h3>Author: {{username}}</h3>
         <div class="container">
@@ -20,4 +20,34 @@
     </div>
     <button type="submit" (click)="Create()">Create</button>
     <hr>
-</div>
+</div> -->
+
+
+<form>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Author : {{username}}</label>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Title</label>
+        <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="post.title"
+            name="Title"
+            placeholder="Title"
+        />
+    </div>
+    <div class="form-group">
+    <label for="exampleFormControlTextarea1">Content</label>
+    <textarea 
+        type="text"
+        [(ngModel)]="post.content"
+        name="content"
+        placeholder="Content" 
+        class="form-control" 
+        id="exampleFormControlTextarea1" 
+        rows="3">
+    </textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="Create()">Create</button>
+</form>
